@@ -1,3 +1,22 @@
-<p>
-  food-list works!
-</p>
+<button type="button" (click)="showForm()">Add New Food</button>
+
+
+<form *ngIf="showing">
+  <h4>Add a food item!</h4>
+  Name<br>
+  <input [(ngModel)]="newItem.name" name="name">
+  <br>
+  # of Calories<br>
+  <input [(ngModel)]="newItem.calories" name="calories">
+  <br>
+  Image URL<br>
+  <input [(ngModel)]="newItem.image" name="image">
+  <br>
+  <button (click)="addNew()">Add Comment</button>
+</form>
+
+<div *ngFor="let foodItem of foods">
+  <img [src]="foodItem.image">
+  <h3>{{foodItem.name | capitalize}}</h3>
+  <p>{{foodItem.calories}}</p>
+</div>

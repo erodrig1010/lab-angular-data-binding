@@ -6,10 +6,13 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { FoodListComponent } from './food-list/food-list.component';
 
+import { CapitalizePipe } from './pipes/capitalize.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
     FoodListComponent,
+    CapitalizePipe,
   ],
   imports: [
     BrowserModule,

@@ -1,22 +1,57 @@
-<button type="button" (click)="showForm()">Add New Food</button>
+<div class="nutritionApp">
+
+  <div class="left">
+
+    <button type="button" (click)="showForm()">Add New Food Item</button>
+    <br><br>
+    
+    <form *ngIf="showing">
+      <h4>Add a food item!</h4>
+      Name<br>
+      <input [(ngModel)]="newItem.name" name="name">
+      <br>
+      # of Calories<br>
+      <input [(ngModel)]="newItem.calories" name="calories">
+      <br>
+      Image URL<br>
+      <input [(ngModel)]="newItem.image" name="image">
+      <br>
+      <button (click)="addNew()">Add Food Item</button>
+    </form>
+    <br><br>
 
 
-<form *ngIf="showing">
-  <h4>Add a food item!</h4>
-  Name<br>
-  <input [(ngModel)]="newItem.name" name="name">
-  <br>
-  # of Calories<br>
-  <input [(ngModel)]="newItem.calories" name="calories">
-  <br>
-  Image URL<br>
-  <input [(ngModel)]="newItem.image" name="image">
-  <br>
-  <button (click)="addNew()">Add Comment</button>
-</form>
+    <label>Search for a food item:</label>
+    <input type="text" [(ngModel)]="searchTerm" (keyup)="filterFoods()">
+    <br><br>
 
-<div *ngFor="let foodItem of foods">
-  <img [src]="foodItem.image">
-  <h3>{{foodItem.name | capitalize}}</h3>
-  <p>{{foodItem.calories}}</p>
-</div>
+    <div class="foodList" *ngFor="let foodItem of resultsArray">
+      <img [src]="foodItem.image">
+      <h3>{{foodItem.name | capitalize}}</h3>
+      <p>{{foodItem.calories}}</p>
+      <button type="button" style="height: 40px"(click)="addToTodayList(foodItem)">Add to Today's Foods</button>
+    </div>
+
+    
+    <!-- <div class="foodList" *ngFor="let foodItem of foods">
+      <img [src]="foodItem.image">
+      <h3>{{foodItem.name | capitalize}}</h3>
+      <p>{{foodItem.calories}}</p>
+      <button type="button" style="height: 40px"(click)="addToTodayList(foodItem)">Add to Today's Foods</button>
+    </div> -->
+  </div> <!-- close left div -->
+
+
+
+  <div class="todayList">
+    <h1>Today's Foods</h1>
+    <h2>{{todaysCalories}} cals</h2>
+
+    <ul>
+      <div class="todayFoods" *ngFor="let selectedItem of todaysFoods">
+        <li>{{selectedItem.name | capitalize}} {{selectedItem.calories}}</li>
+      </div>
+    </ul>
+  </div>
+
+</div> <!-- close nutritionApp div -->

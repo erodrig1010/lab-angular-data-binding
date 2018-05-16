@@ -11,26 +11,36 @@ export class FoodListComponent implements OnInit {
   newItem = {name: "", calories: "", image: ""};
   showing:boolean = false;
 
+  todaysFoods:Array<any> = [];
+  todaysCalories:number = 0;
+
+  resultsArray:Array<any> = [];
+  searchTerm:string = "";
+
   addNew():void {
     const newOne = {
       name: this.newItem.name, 
       calories: this.newItem.calories,
       image: this.newItem.image
     };
-    this.foods.push(newOne);
-    this.newItem.name = "";
-    this.newItem.calories = "";
-    this.newItem.image = "";
+    this.foods.unshift(newOne);
+    this.newItem = {name: "", calories: "", image: ""};
     this.showing = false;
   }
 
   showForm():void {
-    if(this.showing = false) {
-      this.showing = true;
-    }
-    else {
-      this.showing = true;
-    }
+    this.showing = !this.showing;
+  }
+
+  addToTodayList(selectedFood):void {
+    this.todaysFoods.push(selectedFood);
+    this.todaysCalories += Number(selectedFood.calories);
+  }
+
+  filterFoods() {
+    this.resultsArray = this.foods.filter((food => {
+      return food.name.toLowerCase().includes(this.searchTerm.toLowerCase());
+    }))
   }
 
 
@@ -38,6 +48,7 @@ export class FoodListComponent implements OnInit {
 
   ngOnInit() {
     this.foods = foods;
+    this.resultsArray = this.foods;
   }
 
 }

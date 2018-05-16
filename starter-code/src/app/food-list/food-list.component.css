@@ -1,14 +1,18 @@
-div {
+.foodList {
   border: 1px solid black;
-  display: flex;
   padding: 10px;
-  width: 50%;
   margin-bottom: 20px;
+  display: flex;
   align-items: center;
+  justify-content: space-evenly
+}
+
+.foodList button {
+  margin-left: 10px;
 }
 
 img {
-  /* width: 100%; */
+  width: 150px;
   height: 150px;
 }
 
@@ -17,6 +21,18 @@ p {
   margin-left: 10px;
 }
 
-.hidden {
-  visibility: hidden;
+.todayList {
+  margin: 0 auto;
+}
+
+.nutritionApp {
+  display: flex;
+}
+
+.left {
+  width: 50%;
+}
+
+label {
+  font-weight: 700;
 }
